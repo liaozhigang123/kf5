@@ -1,0 +1,4 @@
+三层对应的处理框架
+    界面层---servlet---springMVC（框架）
+    业务逻辑层---service---Spring（框架）
+    数据访问层---dao类---mybatis（框架）

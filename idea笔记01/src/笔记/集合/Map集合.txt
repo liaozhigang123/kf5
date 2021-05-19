@@ -1,0 +1,16 @@
+Map集合
+
+1、java.util.Map接口中常用的方法：
+    a、Map和Collection没有继承关系。
+
+    b、Map集合以key和value的方式存储数据：键值对
+        key和value都是引用数据类型。
+        key和value都是存储对象的内存地址。
+        key起到主导地位，value是key的员工附属品。
+
+
+
+
+
+
+

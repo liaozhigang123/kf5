@@ -1,0 +1,15 @@
+归纳总结
+
+1、xml配置文件的sql语句最后不要加分号";"（sql语句注意不要写错，表名不要写错）
+
+2、数据库是数据库，实体类是实体类，要区分，实体类有对象的概念。
+
+3、接口实现类，new对象注入接口（注解），实现类上加注入（注解）
+
+4、注意：maven项目不要直接复制pom.xml文件，从里面的需求依赖复制。
+
+5、每一个对应的方法记加注释，编程好习惯。
+
+6、return "redirect:queryBookinfo";与return "queryBookinfo"区别
+    return "queryBookinfo"==>page?page=queryBookinfo;【】 return "redirect:queryBookinfo" 重定向跳转到 queryBookinfo控制器。
+

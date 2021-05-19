@@ -1,0 +1,98 @@
+归纳总结
+
+1、注意
+    String sql = "select * from emp;";    【注意第一个分号;】(mysql连接jdbc可以加，Oracle连接jdbc不可以加)
+    Oracle和mysql不同，jdbc中的sql语句，mysql可以加分号";"，Oracle中的jdbc中sql结束后不要加";"不然报错。【统一规范，都不加】
+
+2、注意
+   写配置文件需要指定路径时，注意要加配置文件的".后缀名"。
+
+3、避免空指针异常
+    if(username.equals("admin") && password.equals("123")){} // 可能出现空指针异常
+
+    if("admin".equals(username) && "123".equals(password)){} // 避免空指针异常
+
+4、注意："abc" 这是一个字符串对象，字符串在java中有优待，不需要new也是一个对象。
+    "abc"字符串也是java对象，属于String类型。
+
+    String s = new String("abc");
+    String s = "abc";
+    以上代码本质有点区别，但效果类似差不多。
+
+5、所有的System.out.println()方法执行时，如果输出引用的话，自动调用引用的toString()方法。
+
+6、比较== 对象内存地址比较：最底层的对比，重写的equals比较内容 表面对比。
+    （String的equals已经重写，equals来源于Object类，所有类继承Object类的equals方法，需要重写equals方法来比较内容对比）
+
+7、注意
+    Integer a = 128;
+    Integer b = 128;
+    System.out.println(a == b); // false
+
+    java中为了提高程序的的执行效率，将[-128到127]之间所有的保证对象提前创建好，
+    放到了一个方法区的“整数型常量池”当中了，目的是只要这个区间的数据不需要
+    在new了，直接从整数型常量池当中取出来。
+
+    原理：x变量中的保存的对象内存地址和y变量中保存的对象的内存地址是一样的。
+
+    Integer x = 127;
+    Integer y = 127;
+    // == 永远判断的都是两个对象的内存地址是否相等。
+    System.out.println(x == y); // true
+
+8、java中所有数字的父类是Number
+
+9、==内存地址比较，Object中的equals方法底层也是==也是比较内存地址，需要重写子类中的equals方法才能比较需要的内容比较。
+
+10、记住：在idea中默认的当前路径是Project（工程项目文件下路径）的根。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

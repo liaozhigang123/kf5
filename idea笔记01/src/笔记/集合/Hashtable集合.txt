@@ -1,0 +1,18 @@
+Hashtable集合
+
+1、Hashtable的key和values都是不能为null的。
+    HashMap集合的key和values都是可以为null的。
+
+2、Hashtable方法都带有synchronized：线程安全的。
+    线程安全有其他的方案，这个Hashtable对线程的处理
+    导致效率较低，使用较少了。
+
+3、Hashtable和HashMap一样，底层都是哈希表数据结构。
+    Hashtable的初始化容量是11，默认加载因子是：0.75f
+    Hashtable集合扩容是：原容量*2+1
+
+
+
+
+
+

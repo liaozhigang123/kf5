@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ck.dao.IBookinfoDao">
+    <!--查询映射-->
+    <resultMap id="bookinfoMapper" type="com.ck.entity.Bookinfo">
+
+        <association
+                select="com.ck.dao.IBooktypeDao.queryByIdBooktype"
+                column="btid"
+                property="booktype"/>
+    </resultMap>
+    <!--查询-->
+    <select id="queryBookinfo" resultMap="bookinfoMapper" parameterType="java.util.Map">
+        select bid,bname,price,btid,dtime,imgurl,state from bookinfo
+        <where>
+            <if test="btid!=null and btid!=0">
+                and btid = #{btid}
+            </if>
+            <if test="bname!=null and bname!=''">
+                and bname like "%" #{bname} "%"
+            </if>
+        </where>
+    </select>
+    
+    <!--批量删除-->
+    <delete id="deleteManyBookinfo">
+        delete from bookinfo where bid in
+        <foreach collection="array" open="(" close=")" item="bid" separator=",">
+            #{bid}
+        </foreach>
+    </delete>
+    
+
+</mapper>

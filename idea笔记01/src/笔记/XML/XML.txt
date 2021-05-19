@@ -1,0 +1,131 @@
+XML
+    1、概念：Extensible Markup Language 可扩展标记语言
+        *可扩展：标签都是自定义的。<user></user> <student></student>
+
+    2、功能
+        *存储数据
+            2.1、配置文件
+            2.2、在网络中传输
+
+    3、xml与html的区别
+        3.1、xml标签都是自定义的，html标签是预定义。
+        3.2、xml的语法严格，html语法松散
+        3.3、xml是存储数据的，html是展示数据
+
+        *w3c：万维网联盟
+
+    4、语法：
+        基本语法
+            4.1、xml文档的后缀名.xml
+            4.2、xml第一行必须定义为文档声明
+            4.3、xml文档中有且仅有严格跟标签
+            4.4、属性值必须使用引号（单双都可以）引起来【单双一起，可区分，引号重叠】
+            4.5、标签必须正确关闭
+            4.6、xml标签名称区分大小写
+
+        快速入门
+            <?xml version='1.0' ?>
+
+            <users>
+                <user id="1">
+                    <name>zhangsan</name>
+                    <age>20</age>
+                    <sex>nan</sex>
+            		<br/>
+                </user>
+
+                <user id="2">
+                    <name>zhaoliu</name>
+                    <age>20</age>
+                    <sex>nv</sex>
+                </user>
+
+            </users>
+
+    5、组成部分
+        5.1、文档声明
+            格式:<?xml 属性列表 ?>
+            属性列表：
+                version :版本号，必须的属性
+                encoding :编码方式。告知解析引擎当前文档使用的字符集，默认值：ISO-8859-1
+                standalone :是否独立
+                    取值：
+                        yes：不依赖其他文件
+                        no：依赖其他文件
+
+        5.2、指令（了解）：结合css的
+            <?xml-stylesheet type="text/css" href="a.css" ?>
+
+        5.3、标签：标签名称自定义的
+            规则：
+                名称可以包含字母、数字以及其他的字符
+                名称不能以数字或者标点符号开始
+                名称不能以字母 xml（XML、Xml 等等）开始
+                名称不能包含空格
+
+        5.4、属性：
+            id属性值唯一
+
+        5.5、文本：
+            CDATA区：在该区域中的数据会被原样展示
+                格式：<![CDATA[ 数据 ]]>
+                在idea中输入大写CD即可快捷输入
+
+    6、约束
+        6.1、作为框架的使用者（程序员）
+            能够在xml中引入约束文档
+            能够简单的读懂约束文档
+
+        6.2、分类
+            DTD:一种简单的约束技术
+            Schema：一种复杂的约束技术
+
+        6.3、DTD
+            引入dtd文档到xml文档中
+                内部dtd：将约束规则定义在xml文档中
+
+                外部dtd：将约束的规则定义在外部的dtd文件中（外部引用，通用）
+                    本地：<!DOCTYPE 跟标签名 SYSTEM "dtd文件的位置">
+                    网络：<!DOCTYPE 跟标签名 PUBLIC "dtd文件名字" "dtd文件的位置URL">
+
+        6.4、Schema
+                文件后缀.xsd
+
+                引入schema文件
+                    a、填写xml文档的根元素
+                    b、引入xsi前缀 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    c、引入xsd文件命名空间 xsi:schemaLocation="http://www.itcast.cn/xml 文件名.xsd"
+                    d、为每一个xsd约束声明一个前缀，作为标识 xmlns="http://www.itcast.cn/xml"
+                        一个引入 可以默认前缀为空，多个引入，区分则加前缀标识。
+
+                声明：引入schema文件
+                <students   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xmlns="http://www.itcast.cn/xml"
+                    xsi:schemaLocation="http://www.itcast.cn/xml 文件名.xsd">
+
+    7、解析：操作xml文档，将文档中的数据读取到内存中
+        7.1、操作xml文档
+            解析（读取）：将文档中的数据读取到内存中
+            写入：将内存中的数据保存到xml文档中。持久化的存储
+
+        7.2、解析xml的方式
+            DOM：将标记语言文档一次加载进内存，在内存中形成一颗dom树
+                优点：操作方便，可以对文档进行CRUD的所有操作
+                缺点：占内存
+
+            SAX：逐行读取，基于事件驱动的。
+                优点：不占内存。
+                缺点：只能读取，不能增删改。
+
+    8、xml常见的解析器：
+        JAXP：sun公司提供的解析器，支持dom和sax两种思想
+        DOM4J：一款非常优秀的解析器
+
+        Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。
+                它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。
+
+        PULL：Android操作系统内置的解析器，sax方式的。（手机安卓）
+
+
+
+

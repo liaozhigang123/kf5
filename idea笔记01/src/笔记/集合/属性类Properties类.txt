@@ -1,0 +1,6 @@
+属性类Properties类
+
+1、Properties是一个Map集合，继承了Hashtable，
+    Properties的key和value都是String类型。
+    Properties被称为属性类对象。
+    Properties是线程安全的。

@@ -1,0 +1,113 @@
+注解
+    1、注解，或者叫做"注释类型"，英文单词是：Annotation
+        一种注释类型，一个有要求限制的标记。
+
+    2、注解Annotation是一种引用数据类型。编译之后也是生成xxx.class文件。
+
+    3、怎么自定义注解，语法格式？
+
+        [修饰符列表] @interface 注解类型名{
+
+        }
+
+        public @interface MyAnnotation{
+
+        }
+
+        MyAnnotation ：注解类型名
+
+    4、注解怎么使用，用在什么地方？
+
+        第一：注解使用时语法格式是：
+            @注解类型名
+
+            @MyAnnotation
+            public void add(){}
+
+            public void add(@MyAnnotation String name){}
+
+        第二：注解可以出现在类上、属性上、方法上、变量上、也可以出现在参数列表前，注解参数等......
+             注解还可以出现在注解类型上。
+             默认情况下，注解可以出现在任意位置。
+
+    5、JDK内置了哪些注解：
+
+        java.lang包下的注释类型：
+
+        掌握：
+        Deprecated 用 @Deprecated 注释的程序元素，
+        Deprecated这个注解标注的元素已经过时。
+        这个注解主要是向其他程序员传达一个信息，告知已过时，有更好的解决方案存在。
+
+        掌握：
+        Override 表示一个方法声明打算重写超类中的另一个方法声明
+
+        SuppressWarnings 指示应该在注释元素（以及包含在该注释元素中的
+        所有程序元素）中取消显示指定的编译器警告。
+
+    6、元注解
+        什么是元注解？
+            用来标注"注解类型"的"注解"，称为元注解。
+
+        常见的元注解有哪些？
+            Target
+            Retention
+
+        关于Target注解：
+            这个一个元注解，用来标注"注解类型"的"注解"
+            这个Target注解用来标注"被标注的注解"可以出现在【哪些位置上】。
+
+            @Target(ElementType.METHOD):表示“被标注的注解”只能出现在方法上。
+
+        关于Retention注解：
+            这个一个元注解，用来标注“注解类型”的“注解”
+            这个Retention注解用来标注“被标注的注解”最终【保存在哪里】。
+
+            @Retention(RetentionPolicy.SOURCE):表示该注解只被保留在java源文件中。
+            @Retention(RetentionPolicy.CLASS):表示该注解被保存在class文件中。
+            @Retention(RetentionPolicy.RUNTIME):表示该注解被保存在class文件中，并且可以被反射机制所读取。
+
+
+    7、注解类型
+        注解当中的属性可以是哪一种类型？
+            属性的类型可以是:
+                byte short int long float double boolean char String Class 枚举类型
+                以及以上每一种的数组形式。
+
+        注解属性名value：value属性名只能有一个，可以省略属性名，如果有多个则不可以省略属性名。
+        value属性名可以合其他属性名共存，多个的时候value属性名不可以省略(value)。
+            public @interface MyAnnotation{
+                String value();
+                String name();
+            }
+
+            @MyAnnotation(value="a",name="b")
+            public void add(String name){
+            }
+
+        注解类型可以是数组，数组需要大括号{}表示，数组一个值可以省略大括号。
+            public @interface MyAnnotation{
+                String[] value1();
+                int[] value2();
+            }
+
+            @MyAnnotation(value1={"abc","123"},value2= 1)
+            public void add(){
+
+            }
+
+        枚举类型
+            public enum Abc{
+                A,B,C
+            }
+
+            public @interface MyAnnotation{
+                Abc[] abcArray();
+            }
+
+            @MyAnnotation(abcArray={Abc.A,Abc.B})
+            public void add(){
+
+            }
+
+

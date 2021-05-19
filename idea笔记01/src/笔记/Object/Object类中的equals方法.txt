@@ -1,0 +1,21 @@
+关于Object类中的equals方法
+
+1、equals方法的源代码
+    public boolean equals(Object obj){
+        return (this == obj);
+    }
+    以上这个方法是Object类的默认实现。
+
+2、SUN公司设计equals方法的目的是什么？
+    以后编程的过程当中，都要通过equals方法来判断两个对象是否相等。
+    equals方法是判断两个对象是否相等的。
+
+3、我们需要研究一下Object类给的这个默认的equals方法够不够用！
+    在Object类中的equals方法当中，默认采用的是"=="判断两个java对象是否相等。
+    而"=="判断的是两个java对象的内存地址，我们应该判断两个java对象的内容是否相等。
+    所以老祖宗的equals方法不够用，需要子类重写equals。
+
+4、判断两个java对象是否相等，不能使用"=="，因为"=="比较的是两个对象的内存地址。
+
+
+

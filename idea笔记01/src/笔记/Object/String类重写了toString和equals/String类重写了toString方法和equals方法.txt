@@ -1,0 +1,19 @@
+java语言当中的字符串String有没有重写toString方法，有没有重写equals方法。
+
+总结：
+    1、String类已经重写了equals方法，比较两个字符串不能使用==，必须使用equals。
+        equals是通用的。
+
+    2、String类已经重写了toString方法。
+
+大结论：
+    java中什么类型的数据可以使用"=="判断
+        java中基本数据类型比较是否相等，使用==
+
+    java中什么类型的数据需要使用equals判断
+        java中所有的引用数据类型统一使用equals方法来判断是否相等。
+
+    这是规矩。
+
+    // 字符串String比较字符是否相同采用equals方法 因为字符串String的equals已经重写了。
+    // == 是比较内存地址（详情见String类重写了toString和equals的Test类）

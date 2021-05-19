@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ck.dao.BookinfoDao">
+
+    <!-- property:保存数据实体类的地方    column：当前方传入的数据库的数据 -->
+    <resultMap id="InfoMapper" type="com.ck.entity.Bookinfo">
+<association property="booktype" column="btid" select="com.ck.dao.BooktypeDao.queryById"></association>
+    </resultMap>
+
+<!--根据条件查询-->
+    <select id="queryByCondition" resultMap="InfoMapper">
+        select * from bookinfo
+        <where>
+            <if test="btid !=null and btid!=0">btid = #{btid}</if>
+            <if test="bname!=null and bname!=''">and bname like '%${bname}%'</if>
+        </where>
+    </select>
+
+
+
+</mapper>

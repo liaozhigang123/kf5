@@ -1,0 +1,16 @@
+日期类
+
+1、获取系统当前时间
+    Date d = new Date();
+
+2、日期格式化：Date --> String
+    yyyy-MM-dd HH:mm:ss SSS
+    SimpleDateFormat sdf = new SimpleDate("yyyy-MM-dd HH:mm:ss");
+    String s = sdf.format(new Date());
+
+3、String --> Date
+    SimpleDateFormat sdf = new SimpleDate("yyyy-MM-dd HH:mm:ss");
+    Date d = sdf.parse("2008-08-08 08:08:08");
+
+4、获取毫秒数
+    long begin = System.currentTimeMillis();

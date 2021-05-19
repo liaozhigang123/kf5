@@ -1,0 +1,22 @@
+idea快捷键
+
+1、Ctrl+z是撤销快捷键
+
+2、如果想恢复Ctrl+z 掉的内容，按快捷键为：Ctrl + Shift + Z。
+
+3、Alt+insert 代码自动生成，如生成对象的 set / get 方法，构造函数，toString() 等
+
+4、Alt + Enter(回车) IntelliJ IDEA 根据光标所在问题，提供快速修复选择，光标放在的位置不同提示的结果也不同 （必备）
+
+5、代码提示 ：Ctrl+空格，输入法有冲突需要改成 Alt+/
+
+6、搜索框：敲两次shift
+
+7、多行注释：Ctrl + Shift + /
+
+8、当前页面搜索：Ctrl + F
+
+9、全局搜索：Ctrl + Shift + F、[Ctrl + shift + r]
+
+10、手动try/catch：CTRL+ALT+T
+

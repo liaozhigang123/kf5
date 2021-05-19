@@ -1,0 +1,135 @@
+mybatis框架
+
+1、mybatis提供了哪些功能：
+    a、提供了创建Connection,Statement,ResultSet的能力，不用开发人员创建这些对象了。
+    b、提供了执行sql语句的能力，不用你执行sql。
+    c、提供了循环sql，把sql的结果转为java对象，List集合的能力
+        while(rs.next()){
+            ......
+        }
+    d、提供了关闭资源的能力，不用你关闭Connection,Statement,ResultSet
+
+    开发人员做的是：提供sql语句
+    最后是：开发人员提供sql语句---mybatis处理sql---开发人员得到List集合或者java对象（表中数据）
+
+    总结：
+        mybatis是一个sql映射框架，提供的数据库的操作能力，增强的JDBC，
+        使用mybatis让开发人员集中精神写sql就可以了，不必关心Connection,Statement,ResultSet
+        的创建，销毁，sql的执行。
+
+2、#和$区别
+    <1>、#使用?在SQL语句中做占位的，使用PreparedStatement执行SQL，效率高
+    <2>、#能够避免SQL注入，更安全。
+    <3>、$不使用占位符，是字符串拼接的方式，使用Statement对象执行SQL，效率低
+    <4>、$有SQL注入的风险，缺乏安全性。
+    <5>、$:可以替换表名或者列名（例如：排序的字段）【你能确定数据是安全的，可以使用$】
+
+
+3、mybatis的输出结果
+    mybatis执行了sql语句，得到了java对象。
+
+    (1)、resultType结果类型，指sql语句执行完毕后，数据转为java对象，java类型是任意的。
+         resultType结果类型的值 ①、类型的全限定名称    ②、类型的别名，例如java.lang.Integer别名是int
+
+        处理方式：
+            <1>、mybatis执行sql语句，然后mybatis调用类的无参构造方法，创建对象。
+            <2>、mybatis把ResultSet指定列值付给同名的属性。
+
+    (2)、定义自定义类型的别名
+        <1>、在mybatis主配置文件中定义，使用<typeAlias>定义别名
+        <2>、可以在resultType中使用自定义别名
+
+    (3)、resultMap：结果映射，指定列名和java对象的属性对应关系。
+        <1>、你自定义列值赋值给哪个属性
+        <2>、当你的列名和属性名不一样时，一定使用resultMap
+
+
+
+4、动态SQL
+    动态SQL：sql的内容是变化的，可以根据条件获取到不同的sql语句。
+            主要是where部分发生变化。
+
+    动态sql的实现，使用的是mybatis提供的标签，<if>,<where>,<foreach>
+
+    (1)、是判断条件的，
+        语法<if test="判断java对象的属性值">
+                部分sql语句
+            </if>
+
+    (2)、<where>用来包含多个<if>的，当多个if有一个成立的，<where>会自动增加一个where关键字，
+                并去掉if中多余的and，or等。
+
+    (3)、<foreach>循环java中的数组，list集合的。主要用在sql的in语句中。
+
+        <foreach collection="" item="" open="" close="" separator="">
+
+        </foreach>
+
+        collection：表示接口中的方法参数的类型，如果是数组使用array，如果是list集合使用list
+        item：自定义的，表示数组和集合成员的变量
+        open：循环开始时的字符
+        close：循环结束时的字符
+        separator：集合成员之间的分隔符
+
+    (4)、sql代码片段，就是复用一些语句
+        步骤
+        (1)、先定义<sql id="自定义名称唯一"> sql语句，表名，字段等 </sql>
+        (2)、再使用，<include refid="id的值" />
+
+
+
+5、数据库的属性配置文件
+    (1)、数据库的属性配置文件：把数据库连接信息放到一个单独的文件中。和mybatis主配置文件分开。
+        目的是便于修改，保存，处理多个数据库的信息。
+
+        <1>、在resources目录中定义一个属性配置文件，xxx.properties，例如jdbc.properties
+            在属性配置文件中，定义数据，格式是key=value
+            key：一般使用，做多级目录的。
+            例如 jdbc.mysql.driver
+
+            jdbc.username=root
+
+        <2>、在mybatis的主配置文件，使用<property>指定文件的位置
+            在需要使用值的地方，${key}
+
+    (2)、mapper文件，使用package指定路径
+        <mapper>
+            <!--
+                使用包名
+                name：xml文件（mapper文件）所在的包名，这个包中所有xml文件一次都能加载给mybatis
+                使用package的要求：
+                <1>、mapper文件名称需要和接口名称一样，区分大小写的一样
+                <2>、mapper文件和dao接口需要在同一目录
+            -->
+            <package name="com.ck.dao"/>
+        </mapper>
+
+
+
+6、PageHelper （不是mybatis的插件，是别人写的一个小组件）
+    PageHelper做数据分页的。
+
+
+7、模糊查询
+    名字模糊查询 name like "%" #{name} "%" （mysql）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
