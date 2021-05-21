@@ -17,6 +17,7 @@ public class AaaController {
     @GetMapping("queryAll")
     public String queryAll(ModelMap modelMap){
         System.out.println("hello");
+        System.out.println("123");
         List<Aaa> list = service1.queryAll();
         modelMap.put("list",list);
         return "1";
